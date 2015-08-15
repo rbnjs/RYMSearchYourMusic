@@ -6,11 +6,10 @@
 // @include     http://rateyourmusic.com/release/*
 // @include     https://rateyourmusic.com/artist/*
 // @include     http://rateyourmusic.com/artist/*
-// @version     0.3.0
+// @version     0.3.1
 // @grant       none
 // ==/UserScript==
 
-var image =  
 
 Location = {
   artistPage: function(){
