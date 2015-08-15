@@ -21,3 +21,29 @@ Location = {
     return false;
   }
 };
+
+Get = {
+  artistAndReleaseInfo: function(artistPage) {
+    var resultInfo = []
+    if (artistPage) {
+      resultInfo.push(this.getArtistNameOnArtistPage());
+    } else {
+      resultInfo.push(this.getArtistNameOnReleasePage());
+      resultInfo.push(this.getAlbumName());
+    }
+    return resultInfo
+  },
+  getArtistNameOnArtistPage: function() {
+    var header_name = document.getElementsByClassName("artist_name_hdr")[0];
+    return header_name.innerHTML
+  },
+  getArtistNameOnReleasePage: function() {
+    return document.getElementsByClassName("artist")[0].innerHTML;
+  },
+  getAlbumName: function() {
+    return document.getElementsByClassName("album_title")[0].firstChild
+      .textContent.trim(); 
+  }
+};
+
+Get.artistAndReleaseInfo(Location.artistPage());
