@@ -6,7 +6,7 @@
 // @include     http://rateyourmusic.com/release/*
 // @include     https://rateyourmusic.com/artist/*
 // @include     http://rateyourmusic.com/artist/*
-// @version     0.4.1
+// @version     0.4.2
 // @grant       none
 // ==/UserScript==
 
