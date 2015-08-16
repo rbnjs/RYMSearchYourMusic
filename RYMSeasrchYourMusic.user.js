@@ -6,7 +6,7 @@
 // @include     http://rateyourmusic.com/release/*
 // @include     https://rateyourmusic.com/artist/*
 // @include     http://rateyourmusic.com/artist/*
-// @version     0.5.0
+// @version     0.5.3
 // @grant       none
 // ==/UserScript==
 
@@ -36,6 +36,9 @@ Get = {
   },
   getArtistNameOnArtistPage: function() {
     var header_name = document.getElementsByClassName("artist_name_hdr")[0];
+    if (header_name.childNodes.length == 2){
+      return header_name.childNodes[1].innerHTML;
+    }
     return header_name.innerHTML
   },
   getArtistNameOnReleasePage: function() {
@@ -100,7 +103,8 @@ Button = {
     return (queryLink+query);
   },
   obtainValidString: function(str){
-    return str.toLowerCase().replace(/ /g,"+").replace(/&/g,"%26"); 
+    return str.toLowerCase().replace(/&amp;/,"%26").replace(/&/g,"%26")
+              .replace(/ /g,"+"); 
   }
 };
 
