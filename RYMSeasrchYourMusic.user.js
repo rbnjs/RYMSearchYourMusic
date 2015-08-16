@@ -6,7 +6,7 @@
 // @include     http://rateyourmusic.com/release/*
 // @include     https://rateyourmusic.com/artist/*
 // @include     http://rateyourmusic.com/artist/*
-// @version     0.4.2
+// @version     0.5.0
 // @grant       none
 // ==/UserScript==
 
@@ -68,18 +68,26 @@ Button = {
   },
   createButton: function(artistAndReleaseInfo) {
     var newAElement = this.anchorElement(artistAndReleaseInfo);
-    var imageElement = this.imageElement();
+    var imageElement = this.imageElement(artistAndReleaseInfo);
     newAElement.appendChild(imageElement);
     return newAElement
   },
   anchorElement: function(artistAndReleaseInfo) {
     var newAElement = document.createElement('a');
     newAElement.href = this.generateLink(artistAndReleaseInfo);
+    if (artistAndReleaseInfo.length == 1) {
+      newAElement.style = "padding-left: 5px;"
+    }
     return newAElement
   },
-  imageElement: function() {
+  imageElement: function(artistAndReleaseInfo) {
     var imageElement = document.createElement('img');
     imageElement.src = this.image;
+    if (artistAndReleaseInfo.length == 1) {
+      imageElement.style = "height: 22px; width: 22px;"
+    } else {
+      imageElement.style = "height: 18px; width: 18px;"
+    }
     return imageElement
   },
   generateLink: function(artistAndReleaseInfo) {
