@@ -6,10 +6,18 @@
 // @include     http://rateyourmusic.com/release/*
 // @include     https://rateyourmusic.com/artist/*
 // @include     http://rateyourmusic.com/artist/*
-// @version     0.5.3
+// @version     0.5.4
 // @grant       none
 // ==/UserScript==
 
+/**
+ * Function that removes the edges of a string
+ * @param {string} str A String.
+ * @return {string} The String without the first and last character.
+ */
+removeEdges = function(str){
+  return str.slice(1,str.length - 1);
+}
 
 Location = {
   artistPage: function(){
@@ -42,7 +50,11 @@ Get = {
     return header_name.innerHTML
   },
   getArtistNameOnReleasePage: function() {
-    return document.getElementsByClassName("artist")[0].innerHTML;
+    var artistName = document.getElementsByClassName("artist")[0];
+    if (artistName.childNodes.length == 2) {
+      return removeEdges(artistName.childNodes[1].innerHTML);
+    }
+    return artistName.innerHTML;
   },
   getAlbumName: function() {
     return document.getElementsByClassName("album_title")[0].firstChild
